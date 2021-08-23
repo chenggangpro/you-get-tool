@@ -42,7 +42,7 @@ public class YouGetCommand {
         qualityContainer.put("1080P","1920x1080");
     }
 
-    @ShellMethod(value = "You-get Mp4 auto quality 720P/1080P")
+    @ShellMethod(value = "You-get Mp4 auto detecte video quality in 720P/1080P, or the best quality in mp4 format")
     public String youGetMp4(@ShellOption(value = "-u",defaultValue = "",help = "specified download url or multi urls with format : [url][url]...[url]") String paramUrl,
                             @ShellOption(value = "-p",defaultValue = "",help = "specified download playlist or multi playlist with format : [playlist][playlist]...[playlist]") String paramPlaylist,
                             @ShellOption(value = "-o",defaultValue = "",help = "output dir ,should use absolute dir path , current dir path if missing") String out,
