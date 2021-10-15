@@ -6,6 +6,7 @@ import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.map.CaseInsensitiveMap;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.NumberUtil;
+import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.RuntimeUtil;
 import cn.hutool.core.util.StrUtil;
 import lombok.Getter;
@@ -17,12 +18,7 @@ import picocli.CommandLine.Help.Ansi;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -300,7 +296,12 @@ public class YouGetToolAction {
             while (process.isAlive()){
                 line  = reader.readLine();
                 if(line != null){
-                    this.systemOutPrintln(line);
+                    boolean contains = ReUtil.contains("\\d*.\\d*\\%", line);
+                    if(contains){
+                        System.out.print(line + "\r");
+                    }else{
+                        this.systemOutPrintln(line);
+                    }
                 }
             }
         }catch (IOException e) {
